@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Drink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans Thai', sans-serif; background: #F8F5F0; color: #342B1C; min-height: 100vh; display: flex; flex-direction: column; }
+
+.navbar { background: #34420D; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+.nav-left { font-weight: 700; font-size: 1.25rem; color: #F8F5F0; letter-spacing: 0.05em; }
+.nav-center { font-size: 1.5rem; font-weight: 600; color: #F8F5F0; }
+
+main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+
+.card { background: #FFFFFF; border-radius: 24px; box-shadow: 0 10px 30px rgba(52,66,13,0.15); padding: 2.5rem; max-width: 420px; text-align: center; border: 1px solid #90967A; }
+.card img { width: 100%; height: 260px; object-fit: cover; border-radius: 16px; margin-bottom: 1.5rem; background: #90967A; }
+.card h2 { font-size: 1.75rem; font-weight: 700; color: #342B1C; margin-bottom: 0.5rem; }
+.card p.desc { font-size: 1rem; color: #6B553D; margin-bottom: 1.25rem; line-height: 1.6; }
+.card .price { font-size: 1.25rem; font-weight: 700; color: #34420D; margin-bottom: 2rem; }
+
+.btn-random { background: #34420D; color: #F8F5F0; border: none; padding: 1rem 2rem; font-family: 'Noto Sans Thai', sans-serif; font-size: 1rem; font-weight: 600; border-radius: 12px; cursor: pointer; transition: background 0.2s, transform 0.1s; }
+.btn-random:hover { background: #6B553D; }
+.btn-random:active { transform: scale(0.97); }
+
+footer { background: #342B1C; color: #F8F5F0; text-align: center; padding: 1rem; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-left">69070163</div>
+  <div class="nav-center">random drink</div>
+  <div style="width: 60px;"></div>
+</nav>
+
+<main>
+  <div class="card" id="card">
+    <img id="menuImg" src="1.jpg" alt="Menu">
+    <h2 id="menuName">กำลังโหลด...</h2>
+    <p class="desc" id="menuDesc">กดปุ่มด้านล่างเพื่อสุ่มเมนูเครื่องดื่ม</p>
+    <div class="price" id="menuPrice">- บาท</div>
+    <button class="btn-random" id="btnRandom">สุ่มเมนูอื่น</button>
+  </div>
+</main>
+
+<footer>© 2026 Random Drink</footer>
+
+<script>
+const menus = [
+  { name: 'ชาไทยหวาน', img: '1.jpg', desc: 'ชาไทยรสมือคนกรุงเทพที่ทำหวาน 30% ไปเป็นหวาน 130% ได้', price: '55 บาท' },
+  { name: 'ชามะนาว', img: '2.jpg', desc: 'ชามะนาวแท้ ต้องมีแต่มะนาวไม่มีชา', price: '50 บาท' },
+  { name: 'นมเย็น', img: '3.jpg', desc: 'สีชมพูมาจากการที่เลือดหมูผสมนม', price: '50 บาท' },
+  { name: 'ชาไทยปั่น', img: '4.jpg', desc: 'คนทำแค่ชอบชาไทยเฉยๆ', price: '60 บาท' },
+  { name: 'น้ำผึ้งมะนาวโซดา', img: '5.jpeg', desc: 'สั่งน้ำผึ้งมะนาว แถมโปรตีนเพิ่มเติม (ผึ้ง)', price: '50 บาท' }
+];
+
+const imgEl = document.getElementById('menuImg');
+const nameEl = document.getElementById('menuName');
+const descEl = document.getElementById('menuDesc');
+const priceEl = document.getElementById('menuPrice');
+const btn = document.getElementById('btnRandom');
+
+function randomMenu() {
+  const m = menus[Math.floor(Math.random() * menus.length)];
+  imgEl.src = m.img;
+  imgEl.alt = m.name;
+  nameEl.textContent = m.name;
+  descEl.textContent = m.desc;
+  priceEl.textContent = m.price;
+}
+
+btn.addEventListener('click', randomMenu);
+
+window.addEventListener('DOMContentLoaded', randomMenu);
+</script>
+
+</body>
+</html>
